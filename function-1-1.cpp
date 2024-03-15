@@ -1,11 +1,11 @@
 #include <iostream>
 
-double arrayMin(double* array, int size){
-    int min = 0;
-    for (int i = 0; i < size; i++){
-        if (array[i] <= array[i+1]){
-            min++;
+double arrayMin(double* array, int size) {
+    double min = array[0];
+    for (int i = 1; i < size; i++) {
+        if (array[i] < min) {
+            min = array[i];
         }
     }
-    return array[min];
+    return min;
 }
