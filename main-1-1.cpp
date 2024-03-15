@@ -1,13 +1,12 @@
 #include <iostream>
 
-extern int sum_diagonal(int array[4][4]);
-
 using namespace std;
 
+extern double arrayMin(double* array, int size);
+
 int main(void){
-    int array[4][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
-
-    cout << "The sum of the array is " << sum_diagonal(array) << endl;
-
+    double arrayTest[5] = {2,3,4,1,5};
+    int size = 5;
+    cout << "The minimum value of the array is " << arrayMin(arrayTest,size) << endl;
     return 0;
 }

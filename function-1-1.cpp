@@ -1,10 +1,11 @@
 #include <iostream>
 
-int sum_diagonal(int array[4][4]){
-    int sum = 0;
-    for (int i = 0; i < 4; i++){
-        sum += array[i][i];
+double arrayMin(double* array, int size){
+    int min = 0;
+    for (int i = 0; i < size; i++){
+        if (array[i] <= array[i+1]){
+            min++;
+        }
     }
-
-    return sum;
+    return array[min];
 }
