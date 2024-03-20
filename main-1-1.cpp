@@ -1,13 +1,11 @@
 #include <iostream>
 
-using namespace std;
+extern int* readNumbers();
+extern void printNumbers(int*, int);
 
-extern double arrayMin(double* array, int size);
-
-int main() {
-    double array[] = {3.5, 2.7, 9.8, 1.2, 5.6};
-    int size = sizeof(array) / sizeof(array[0]);
-    double min = arrayMin(array, size);
-    std::cout << "Minimum value found: " << min << std::endl;
+int main(void){
+    int* numbers = readNumbers();
+    printNumbers(numbers, 10);
+    delete[] numbers;
     return 0;
 }

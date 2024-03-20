@@ -1,11 +1,18 @@
+// function-1-1.cpp
 #include <iostream>
+#include <cstdlib>
+using namespace std;
 
-double arrayMin(double* array, int size) {
-    double min = array[0];
-    for (int i = 1; i < size; i++) {
-        if (array[i] < min) {
-            min = array[i];
-        }
+int* readNumbers() {
+  int* numbers = new int[10];
+    for (int i = 0; i < 10; ++i) {
+        cin >> numbers[i];
     }
-    return min;
+    return numbers;
+}
+
+void printNumbers(int* numbers, int length) {
+    for (int i = 0; i < length; ++i) {
+        cout << i << " " << numbers[i] << endl;
+    }
 }
