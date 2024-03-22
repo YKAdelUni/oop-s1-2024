@@ -1,18 +1,9 @@
-// function-1-1.cpp
-#include <iostream>
-#include <cstdlib>
-using namespace std;
-
-int* readNumbers() {
-  int* numbers = new int[10];
-    for (int i = 0; i < 10; ++i) {
-        cin >> numbers[i];
+#include "Person.h"
+Person* createPersonArray(int n) {
+    Person* arr = new Person[n];
+    for (int i = 0; i < n; ++i) {
+        arr[i].name = "John Doe";
+        arr[i].age = 0;
     }
-    return numbers;
-}
-
-void printNumbers(int* numbers, int length) {
-    for (int i = 0; i < length; ++i) {
-        cout << i << " " << numbers[i] << endl;
-    }
+    return arr;
 }
