@@ -1,12 +1,30 @@
 #include <iostream>
-#include "Person.h"
+#include "player.h"
+#include "wizard.h"
+#include "warrior.h"
 
-extern Person* createPersonArray(int n);
+using namespace std;
 
 int main() {
-    Person* arr = createPersonArray(5);
-    for (int i = 0; i < 5; ++i) {
-        std::cout << arr[i].name << " is " << arr[i].age << " years old." << std::endl;
+    //Wizard(name, health, damage, mana)
+    Wizard wizard("Gandalf", 100, 20, 50);
+    //Warrior(name, health, damage, weapon)
+    Warrior warrior("Aragorn", 120, 25, "Sword");
+    
+    cout << "Let the battle begin!" << endl;
+    
+    while (wizard.getHealth() > 0 && warrior.getHealth() > 0) {
+        wizard.castSpell(&warrior);
+        if (warrior.getHealth() > 0) {
+            warrior.swingWeapon(&wizard);
+        }
     }
+    
+    if (wizard.getHealth() > 0) {
+        cout << wizard.getName() << " wins!" << endl;
+    } else {
+        cout << warrior.getName() << " wins!" << endl;
+    }
+    
     return 0;
 }
