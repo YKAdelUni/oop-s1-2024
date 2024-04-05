@@ -1,17 +1,43 @@
-#include "Person.h"
 #include <iostream>
-
-extern PersonList createPersonList(int n);
+#include "vehicle.h"
+#include "car.h"
+#include "bus.h"
+#include "motorbike.h"
+#include "parkingLot.h"
 
 int main() {
-    // Create a PersonList with 5 people
-    PersonList list = createPersonList(5);
-
-    // Print out the names and ages of each person in the list
-    for (int i = 0; i < list.numPeople; i++) {
-        std::cout << "Name: " << list.people[i].name << "\n";
-        std::cout << "Age: " << list.people[i].age << "\n\n";
+    ParkingLot lot(10);
+    
+    while (lot.getCount() < 10) {  
+        char type;
+        int id;
+        std::cout << "Enter vehicle type and ID (C/B/M for Car, Bus, Motorbike respectively): "; 
+        std::cin >> type >> id;
+        
+        Vehicle* vehicle = nullptr;
+        switch(type) {
+            case 'C':
+                vehicle = new Car(id);
+                break;
+            case 'B':
+                vehicle = new Bus(id);
+                break;
+            case 'M':
+                vehicle = new Motorbike(id);
+                break;
+        }
+        
+        if (vehicle) {
+            lot.parkVehicle(vehicle);
+        } else {
+            std::cout << "Invalid type of vehicle\n";
+        }
     }
-
+    
+    int id;
+    std::cout << "Enter ID of vehicle to unpark: "; 
+    std::cin >> id;
+    lot.unparkVehicle(id);
+    
     return 0;
 }
