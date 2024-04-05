@@ -1,23 +1,31 @@
-// main-1-3.cpp
 #include <iostream>
-#include "Person.h"
+#include "vehicle.h"
+#include "car.h"
+#include "bus.h"
+#include "motorbike.h"
+#include "parkingLot.h"
 
-extern PersonList deepCopyPersonList(PersonList pl);
-
-using namespace std;
-
-int main(void){
-    PersonList original_list;
-    original_list.numPeople = 2;
-    original_list.people = new Person[original_list.numPeople];
-    original_list.people[0].name = "Alice";
-    original_list.people[0].age = 35;
-    original_list.people[1].name = "Bob";
-    original_list.people[1].age = 42;
-    PersonList copied_list = deepCopyPersonList(original_list);
-    for (int i = 0; i < copied_list.numPeople; ++i) {
-        cout << "Name: " << copied_list.people[i].name << ", Age: " << copied_list.people[i].age << endl;
+int main() {
+    ParkingLot lot(10);
+    
+    for (int i = 0; i < 5; ++i) {
+        Car* car = new Car();
+        lot.parkVehicle(car);
     }
-    delete [] original_list.people;
-    delete [] copied_list.people;
+  
+    for (int i = 0; i < 3; ++i) {
+        Bus* bus = new Bus();
+        lot.parkVehicle(bus);
+    }
+    
+    for (int i = 0; i < 2; ++i) {
+        Motorbike* motorbike = new Motorbike();
+        lot.parkVehicle(motorbike);
+    }
+  
+    int count = lot.countOverstayingVehicles(15);
+    
+    std::cout << "Number of vehicles that overstayed: " << count << "\n";
+    
+    return 0;
 }
