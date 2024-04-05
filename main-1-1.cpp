@@ -1,29 +1,45 @@
 #include <iostream>
-#include "player.h"
-#include "wizard.h"
-#include "warrior.h"
+#include "vehicle.h"
+#include "car.h"
+#include "bus.h"
+#include "motorbike.h"
 
 using namespace std;
 
 int main() {
-    //Wizard(name, health, damage, mana)
-    Wizard wizard("Gandalf", 100, 20, 50);
-    //Warrior(name, health, damage, weapon)
-    Warrior warrior("Aragorn", 120, 25, "Sword");
+    int n;
+    cout << "Enter number of vehicles: "; 
+    cin >> n;
     
-    cout << "Let the battle begin!" << endl;
+    Vehicle* vehicles[n];
     
-    while (wizard.getHealth() > 0 && warrior.getHealth() > 0) {
-        wizard.castSpell(&warrior);
-        if (warrior.getHealth() > 0) {
-            warrior.swingWeapon(&wizard);
+    for (int i = 0; i < n; ++i) {
+        char type;
+        int id;
+        cout << "Enter vehicle type and ID (C/B/M for Car, Bus, Motorbike respectively): "; 
+        cin >> type >> id;
+        
+        switch(type) {
+            case 'C':
+                vehicles[i] = new Car(id);
+                break;
+            case 'B':
+                vehicles[i] = new Bus(id);
+                break;
+            case 'M':
+                vehicles[i] = new Motorbike(id);
+                break;
         }
     }
     
-    if (wizard.getHealth() > 0) {
-        cout << wizard.getName() << " wins!" << endl;
-    } else {
-        cout << warrior.getName() << " wins!" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << "Vehicle ID: " << vehicles[i]->getID() 
+                  << ", Parking Duration: " << vehicles[i]->getParkingDuration() 
+                  << " seconds.\n";
+    }
+    
+    for (int i = 0; i < n; ++i) {
+        delete vehicles[i];
     }
     
     return 0;
